@@ -1,0 +1,70 @@
+//=================================================================================================================
+// Octarine Core
+//=================================================================================================================
+"item_octarine_core_excellent"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"							"2018"						
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_octarine_core"
+	"AbilityTextureName"			"item_octarine_core_excellent"
+	"UpgradesItems"					"item_octarine_core_excellent"
+	"UpgradeRecipe"					"item_recipe_octarine_core_excellent"
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemShopTags"					"move_speed;boost_mana;mana_pool"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_intelligence"	"50"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"850"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_mana"			"800"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health_regen"	"8"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_mana_regen"		"200"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_cooldown"		"50"
+		}
+		"07"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"hero_lifesteal"		"60"
+		}			
+		"08"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"creep_lifesteal"		"15"
+		}	
+		"09"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"active_duration"		"7"
+		}
+	}
+}

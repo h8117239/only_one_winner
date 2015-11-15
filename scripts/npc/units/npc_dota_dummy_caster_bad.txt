@@ -1,0 +1,27 @@
+//=================================================================================
+// Dummy unit: Dummy Caster 一个游离在游戏外的无敌无碰撞不可见单位，用于做些特别的事情 (BadGuy)
+//=================================================================================
+"npc_dota_dummy_caster_bad"
+{
+	"BaseClass"					"npc_dota_creature"
+	"Model"						"models/development/invisiblebox.vmdl"
+	"Ability1"					"dota_ability_dummy"
+	"Ability2"					"crystal_maiden_freezing_field"
+	"Ability3"					"warlock_rain_of_chaos"
+	"Ability4"					"invoker_tornado"
+	"Ability5"					"invoker_sun_strike"
+	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	"BountyXP"					"0"
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY" // was DOTA_UNIT_CAP_MOVE_NONE
+	"MovementSpeed"				"0"
+	"StatusHealth"				"5000"
+	"StatusMana"				"5000"
+	"StatusManaRegen"			"250"
+	"TeamName"					"DOTA_TEAM_BADGUYS"
+
+	"precache"
+	{
+		"particle_folder"	"particles/units/heroes/hero_warlock"
+		"particle_folder"	"particles/units/heroes/hero_invoker"
+	}
+}

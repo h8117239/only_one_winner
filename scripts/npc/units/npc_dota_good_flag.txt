@@ -1,0 +1,104 @@
+"npc_dota_good_flag"
+{
+	// General
+	//
+	"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+	"Model"						"models/props_teams/banner_radiant.vmdl"// Model.
+	//"SoundSet"					"Tower.Water"					// Name of sound set.
+	"MinimapIcon"				"minimap_tower90"
+	"MinimapIconSize"			"200"
+	"Level"						"1"
+	"IsAncient"                    "1"
+	"ModelScale"				"1.3"	
+	"HealthBarOffset"		"330"			
+	// Abilities
+	//----------------------------------------------------------------
+	
+	"Ability1"					"flag_spawner"			// Ability 1.
+	"Ability2"					"flag_destroy"			// Ability 2.
+	"Ability3"					""			// Ability 3.
+	"Ability4"					""			// Ability 4.
+	"Ability5"					""			// Ability 5.
+	"Ability6"					""			// Ability 6 - Extra.
+	"Ability7"					""			// Ability 7 - Extra.
+	"Ability8"					""			// Ability 8 - Extra.
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"2000"		// Physical protection.
+	"MagicalResistance"			"999"			// Magical protection.
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	//"AttackDamageMin"			"25"		// Damage range min.
+	//"AttackDamageMax"			"50"		// Damage range max.
+	//"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+	//"AttackRate"				"1"			// Speed of attack.
+	//"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
+	//"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
+	//"AttackRange"				"700"		// Range within a target can be attacked.
+	//"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
+	//"ProjectileSpeed"			"750"		// Speed of projectile.
+
+	// Attributes
+	//----------------------------------------------------------------
+	"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+	"AttributeBaseStrength"		"0"			// Base strength
+	"AttributeStrengthGain"		"0"			// Strength bonus per level.
+	"AttributeBaseIntelligence"	"0"			// Base intelligence
+	"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
+	"AttributeBaseAgility"		"0"			// Base agility
+	"AttributeAgilityGain"		"0"			// Agility bonus per level.
+
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyXP"					"0"	// Experience earn.
+	"BountyGoldMin"				"0"		// Gold earned min.
+	"BountyGoldMax"				"0"		// Gold earned max.
+
+	// Bounds
+	//----------------------------------------------------------------
+	"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+	"ProjectileCollisionSize"	"10"
+	"RingRadius"				"130"
+	"HealthBarOffset"			"260"
+
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+	"MovementSpeed"				"0"				// Speed
+	"MovementTurnRate"			"1.0"			// Turning rate.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"80000"		// Base health.
+	"StatusHealthRegen"			"0"			// Health regeneration rate.
+	"StatusMana"				"600"			// Base mana.
+	"StatusStartingMana"		"0"			// Base mana.
+	"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+	"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+        "VisionDaytimeRange"		"400"		// Range of vision during day light.
+	"VisionNighttimeRange"		"200"		// Range of vision at night time.
+
+        // Creature Data
+        //----------------------------------------------------------------
+        "Creature"
+        {
+            //Level Up
+            "HPGain"                    "50"
+            "DamageGain"                "2"
+            "ArmorGain"                 "0.25"
+            "MagicResistGain"           "0.1"
+            "MoveSpeedGain"             "1"
+            "BountyGain"                "3"
+            "XPGain"                    "0"
+        }
+}

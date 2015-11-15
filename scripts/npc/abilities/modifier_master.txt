@@ -1,0 +1,439 @@
+//modify的集合 便于lua脚本调用
+"modifier_master"
+{
+	"ID"							"2000"
+	
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName" "rubick_spell_steal"	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"100"
+	"AbilityCastPoint"				"0.0"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type" "FIELD_INTEGER"
+			"Range" "300"
+		}
+		"02"
+		{
+			"var_type" "FIELD_INTEGER"
+			"ag" 		"20"
+		}
+		"02"
+		{
+			"var_type" "FIELD_INTEGER"
+			"int" 		"20"
+		}
+		"03"
+		{
+			"var_type" "FIELD_INTEGER"
+			"str" 		"20"
+		}
+        "04"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "min_health"        "1"
+        }
+        "04"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "stun_duration"        "1"
+        }
+
+	}
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	{
+		"particle"	"particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+		"particle"	"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+		"particle"                      "particles/generic_gameplay/generic_stunned.vpcf"
+        "particle"                      "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf"
+        "particle"                      "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf"
+        "particle"                      "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
+        "particle"      "particles/generic_gameplay/generic_silence.vpcf"    
+
+	}
+
+
+	"Modifiers"
+	{
+		"blessing_of_heaven"
+		{
+
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" 
+			"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+			"EffectAttachType" "follow_origin"
+			"Properties"
+			{
+				//修改hp回复百分
+				//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "100"
+				//百分比攻击伤害
+				//"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"		"20"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%ag"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int"	
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str"					
+
+			}		
+
+		}
+
+		"modifier_blessing_of_hell"
+        {
+			"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+			"EffectAttachType" "follow_origin"
+            "OnTakeDamage"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"        "lua_skills/blessing_of_hell.lua"
+                    "Function"          "blessing_of_hell"
+                }
+            }
+        }
+
+
+
+		//薄葬
+		"modifier_shallow_grave_datadriven"
+		{
+			//"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" 
+            "EffectName"        "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+            "EffectAttachType"  "follow_origin"
+    
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MIN_HEALTH" "%min_health" 
+                //MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
+                "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "100"
+            }	
+            
+		}
+
+		//反射
+        "modifier_spiked_carapace_buff_datadriven"
+        {
+            "IsBuff"                "0"
+            "IsPurgable"            "0"
+        
+            //"Duration"              "4"
+            "TextureName" "nyx_assassin_spiked_carapace"
+            "EffectName"            "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf"
+            
+            "OnTakeDamage"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "lua_skills/reflect.lua"
+                    "Function"      "reflect"
+                    "DamageTaken"   "%attack_damage"
+                }
+            }
+            "OnCreated"
+            {
+        		"ApplyModifier"
+				{
+					"ModifierName" "modifier_silence"
+					"Target" "TARGET"
+					//"Duration"              "4"
+				}   
+        		"ApplyModifier"
+				{
+					"ModifierName" "modifier_disarm"
+					"Target" "TARGET"
+					//"Duration"              "4"
+				}   
+			}
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_silence"
+					"Target" "TARGET"
+				}
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_disarm"
+					"Target" "TARGET"
+				}
+			}
+
+        }
+        //沉默
+        "modifier_silence"
+        {
+            "IsDebuff"  "1"
+            "IsPurgable"    "1"
+            "IsHidden"                  "1"
+            "EffectName"    "particles/generic_gameplay/generic_silence.vpcf"
+            "EffectAttachType"  "follow_overhead"           
+            "States"
+            {
+                "MODIFIER_STATE_SILENCED"   "MODIFIER_STATE_VALUE_ENABLED"
+            }
+        }
+
+        //缴械 
+        "modifier_disarm"
+        {
+            "IsDebuff"      "1"
+            "IsPurgable"    "0"
+            "IsHidden"                  "1"
+            "TextureName"   "invoker_deafening_blast"
+
+            "StatusEffectName"      "particles/status_fx/status_effect_frost.vpcf"     
+            "StatusEffectPriority"  "10"
+
+            "EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+            "EffectAttachType"  "follow_overhead"
+
+            "States"
+            {
+                "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+            }
+        }
+        
+        "modifier_spiked_carapaced_stun_datadriven"
+        {
+            "IsDebuff"              "1"
+        
+            "Duration"              "%stun_duration"
+            
+            "OverrideAnimation"     "ACT_DOTA_DISABLED"
+
+            "TextureName" "nyx_assassin_spiked_carapace"
+
+            "OnCreated"
+            {
+                "AttachEffect"
+                {
+                    "Target"            "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "ControlPoints"
+                    {
+                        "02"            "%stun_duration %stun_duration %stun_duration"
+                    }
+                }
+            
+                "AttachEffect"
+                {
+                    "Target"            "TARGET"
+                    "EffectName"        "particles/generic_gameplay/generic_stunned.vpcf"
+                    "EffectAttachType"  "follow_overhead"
+                }
+            }
+            
+            "States"
+            {
+                "MODIFIER_STATE_STUNNED"    "MODIFIER_STATE_VALUE_ENABLED"
+            }
+        }
+
+        "modifier_think_invis"
+        {
+        	"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+			"EffectAttachType" "follow_origin"
+
+        	"ThinkInterval"  "10"
+
+			"OnIntervalThink"
+			{
+
+					"RunScript"
+                	{
+                    	"ScriptFile"    "lua_skills/invis.lua"
+                    	"Function"      "invis"
+                	}
+			}
+
+        }
+
+        "modifier_think_momian"
+        {
+        	"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+			"EffectAttachType" "follow_origin"
+
+        	"ThinkInterval"  "10"
+
+			"OnIntervalThink"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName" "modifier_momian"
+					"Target" "CASTER"
+				}
+			}
+        }
+
+        "modifier_momian"
+        {
+            "Duration"                  "4"
+            "IsHidden"                  "1"
+            "EffectName"                "particles/items_fx/black_king_bar_avatar.vpcf"
+            "EffectAttachType"          "PATTACH_ABSORIGIN"           
+            "States"
+            {
+                "MODIFIER_STATE_MAGIC_IMMUNE"           "MODIFIER_STATE_VALUE_ENABLED"
+            }
+        }
+
+
+		//一些免疫效果 无敌等
+    		"invulnerable"
+    		{
+    			"Passive"	"1"
+    			"States"
+    			{
+    			// Sub-keys can be found by using "modifierState" constant completions
+    			// Sub-values can be found by using "modifierStateValue" constant completions
+    			//"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_LOW_ATTACK_PRIORITY"		"MODIFIER_STATE_VALUE_ENABLED"
+    			"MODIFIER_STATE_MAGIC_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_ATTACK_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_NO_TEAM_MOVE_TO"			"MODIFIER_STATE_VALUE_ENABLED"
+    			
+    			}
+    		}
+
+		//减速
+		"modifier_slow"
+		{
+			"TextureName" "lich_chain_frost"
+			//"EffectName" "lich_frost_nova"
+			//"EffectAttachType" "follow_origin"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-50"
+			}
+		}
+
+		"modifier_hp_re_per"
+		{
+			"TextureName" "item_greater_salve"
+			"EffectName" "particles/items_fx/healing_flask.vpcf"
+			"EffectAttachType" "follow_origin"
+			"Properties"
+			{
+				//修改hp回复百分
+				"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "100"
+				//"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		""
+
+			}
+		}
+
+
+		"aure_modifer"
+		{
+
+			"Passive" "1"
+			"IsHidden" "1"
+
+			"ThinkInterval"  "1"
+
+			"OnIntervalThink"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName" "modifier_riki_permanent_invisibility"
+					"Target"
+					{
+						"Teams"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+						"Types"  "DOTA_UNIT_TARGET_HERO"
+						"Center" "CASTER"
+						"Radius" "%Range"
+					}
+				}
+				"ApplyModifier"
+				{
+					"ModifierName" "remove_modifier"
+					"Target"
+					{
+						"Teams"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+						"Types"  "DOTA_UNIT_TARGET_HERO"
+						"Center" "CASTER"
+						"Radius" "%Range"
+					}
+				}
+			}
+
+		}
+   	"invis_modifer"
+   {
+
+    "Passive" "1"
+    "IsHidden" "1"
+
+    "ThinkInterval"  "1"
+
+    "OnIntervalThink"
+    {
+    	"RunScript"
+	{
+		"ScriptFile"			"abilities.lua"
+		"Function"				"Invisibility"
+		 "Target"
+      		{
+       		"Teams"  "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+       		"Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+       		"Center" "CASTER"
+       		"Radius" "300"
+      		}
+	}
+    }
+
+   }
+		"remove_modifier"
+		{
+			//"IsDebuff" "1"
+			"IsPurgable" "0"
+			"IsHidden" "1"
+			"Duration" "1.1"
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_riki_permanent_invisibility"
+					"Target" "TARGET"
+				}
+			}
+
+			"OnAttacked"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_riki_permanent_invisibility"
+					"Target" "TARGET"
+				}
+			}
+
+			"OnAttackLanded"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_riki_permanent_invisibility"
+					"Target" "TARGET"
+				}
+			}
+
+			"OnTakeDamage"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" "modifier_riki_permanent_invisibility"
+					"Target" "TARGET"
+				}
+			}
+
+		}
+
+
+	}
+}

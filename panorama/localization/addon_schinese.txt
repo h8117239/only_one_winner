@@ -1,0 +1,23 @@
+"addon"
+{
+	"addonname"	"胜者唯一"
+
+	"custom_end_screen_victory_condition"	"赢家只有一个！"
+	"ConquestTeamPoints"							""
+	"Radiant_Team"									"天启"
+	"Dire_Team"										"魔狱"
+
+	"game_info_header_objective"			"目标:"
+	"brief_description"					"只有<span class='resource'>一个玩家</span>可以获胜，每当你杀死一个敌方玩家，将会有一个你的队友投敌。当队伍中只剩下你一个人时,你将<span class='resource'>获胜</span>！ "
+	"game_info_header_playable_modes"			"游戏模式:"
+	"game_info_header_playable_modes_dec"			"<span class='mode'>抢夺</span> and <span class='mode'>对战</span>"
+	"game_info_header_how_to_play"		"如何玩:"
+	"game_info_throne"					"每隔一段时间，地图上会有两个固定的地点诞生<span class='flag'>宝箱</span>，夺取这些宝箱，其中蕴藏的力量会让你无比的强大。 "
+	"game_info_coins"						"地图的四个角落都会经常性的刷新神符"
+	"game_info_items"						"善加利用初始赠送的道具<span class='building'>苍蝇</span> "
+	"game_info_tips_header"				"取胜关键:"
+	"game_info_tip01"						"KS人头！！！"
+	"game_info_tip02"						"保护你的队友，让他们免于被敌方杀害。"
+	"game_info_tip03"						"当心你的队友，别让他们K太多人头。"
+	"game_info_tip04"						"没错，这个游戏没有朋友！胜者唯一"
+}

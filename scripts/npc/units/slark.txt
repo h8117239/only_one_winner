@@ -1,0 +1,110 @@
+//龙骑模型
+"slark"	
+{
+	"vscripts"					"rpg_creature.lua"
+	// General
+	//----------------------------------------------------------------
+	"Model"						"models/heroes/dragon_knight/dragon_knight.vmdl"	// 
+	"BaseClass"					"npc_dota_creature"
+	"SoundSet"					"Hero_DragonKnight"
+	"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	"Level"						"1"
+	"ModelScale" 				"0.8"
+
+	// Abilities
+	//----------------------------------------------------------------
+	"Ability1"					""			// Ability 1
+	"Ability2"					""			// Ability 2
+	"Ability3"					""			// Ability 3
+	"Ability4"					""			// Ability 4
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"1"			// Physical protection.
+	"MagicalResistance"			"5"		// Magical protection.
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"			"31"									// Damage range min.
+	"AttackDamageMax"			"36"									// Damage range max.	
+	"AttackRate"				"1.5"									// Speed of attack.
+	"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+	"AttackRange"				"128"									// Range within a target can be attacked.
+	"ProjectileModel"			""										// Particle system model for projectile.
+	"ProjectileSpeed"			"0"										// Speed of projectile. 
+
+	// Bounds
+	//----------------------------------------------------------------
+	"RingRadius"				"40"
+	"HealthBarOffset"			"170"
+
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyXP"					"20"		// Experience earn.
+	"BountyGoldMin"				"18"		// Gold earned min.
+	"BountyGoldMax"				"24"		// Gold earned max.
+
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"350"		// Speed.			
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"180"		// Base health.
+	"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+	"StatusMana"				"0"			// Base mana.
+	"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+	// Creature Data
+	//----------------------------------------------------------------------------------------------------------------------
+	"Creature"
+	{
+
+		//Level Up
+		"HPGain"					"100"
+		"DamageGain"				"2"
+		"ArmorGain"					"0.25"
+		"MagicResistGain"			"0.1"
+		"MoveSpeedGain"				"1"
+		"BountyGain"				"3"
+		"XPGain"					"15"
+		"AttachWearables"   // 附加饰品  写上刚才的数字  顺序没关系 但注意编号 
+                {
+                    "Wearable1"
+                    {
+                        "ItemDef"           "8974" 
+                    }
+                    "Wearable2"
+                    {
+                        "ItemDef"           "8975" 
+                    }
+                    "Wearable3"
+                    {
+                        "ItemDef"           "8976" 
+                    }
+                    "Wearable4"
+                    {
+                        "ItemDef"           "8977" 
+                    }
+                    "Wearable5"
+                    {
+                        "ItemDef"           "8978" 
+                    }
+                }
+	}
+}

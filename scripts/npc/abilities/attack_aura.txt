@@ -1,0 +1,59 @@
+//光环技能   伤害加成光环
+"attack_aura"
+ {
+  "BaseClass" "ability_datadriven"
+  "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+  "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+  "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+  "AbilityTextureName" "red1"
+  "MaxLevel" "1"
+  "ItemBaseLevel"	"1"
+  "AbilityCastPoint"    "0.0"
+  "AbilityCastRange"    "50000"
+  "AbilityCooldown"    "0"
+  "AbilityManaCost"    "0"
+
+  "precache"
+  {
+  	"particle_folder"	"particles/units/heroes/hero_silencer"
+  	"soundfile"			"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+  }
+ 
+  "AbilitySpecial"
+  {
+   "01"
+   {
+    "var_type" "FIELD_INTEGER"
+    "Range" "50000"
+   }
+  }
+ 
+  "Modifiers"
+  {
+  	
+
+   "aure_modifer"
+   {
+    "Passive" "1"
+    "IsHidden" "1"
+    "Aura" "aure_attack"
+    "Aura_Radius" "%Range"
+    "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "Aura_Types" "DOTA_UNIT_TARGET_HERO"
+  }
+ 
+   "aure_attack"
+   {
+    "EffectName" "particles/units/heroes/hero_silencer/silencer_last_word_status.vpcf"
+    "EffectAttachType" "follow_origin"
+    "EffectRadius" 	"100"
+  	"IsPurgable" "0"
+    "Properties"
+    {
+     "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "50"
+    }
+
+   }
+
+  }
+ }

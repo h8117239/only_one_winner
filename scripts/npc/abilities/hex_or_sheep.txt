@@ -1,0 +1,125 @@
+//传说中的变鸡术 不会被技能
+"hex_or_sheep"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityTextureName"			"shadow_shaman_voodoo"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilitySharedWithTeammates" 	"1"
+	"MaxLevel"	"1"
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"300"
+	"AbilityCastPoint"				"0"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"60"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+
+	"precache"
+	{
+		"particle_folder"	"particles/units/heroes/hero_lion"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName" "modifier_hex_or_sheep"
+			"Target" "TARGET"
+		}	
+		"FireSound"
+		{
+			"EffectName" "Hero_Lion.Voodoo"
+		}	
+	}
+	
+	// Modifiers
+	//-------------------------------------------------------------------------------------------------------------
+	"Modifiers"
+	{
+		"modifier_hex_or_sheep"
+		{
+			//"EffectName"									 "shadowshaman_voodoo"
+			"ModelName"										 "models/props_gameplay/sheep01.mdl"
+			"Duration"										 "%duration"
+			"Properties"
+			{
+				//"MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"	"%movespeed"
+				"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen"
+				"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE" "%regen"
+			}
+			"States"
+			{
+				"MODIFIER_STATE_SILENCED"		    "MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_MUTED"			    "MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_PASSIVES_DISABLED"  "MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_BLOCK_DISABLED"		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_EVADE_DISABLED"		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_HEXED"				"MODIFIER_STATE_VALUE_ENABLED"
+			}
+
+			//"OnAttacked"
+			//{
+			//	"RemoveModifier"
+			//	{
+			//		"Target" 			"TARGET"
+			//		"ModifierName"		"modifier_hex_or_sheep"
+			//	}
+			//}
+		}
+    		"ignoreme"
+    		{
+    			"Passive"	"1"
+    			"States"
+    			{
+    			// Sub-keys can be found by using "modifierState" constant completions
+    			// Sub-values can be found by using "modifierStateValue" constant completions
+    			//"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			"MODIFIER_STATE_LOW_ATTACK_PRIORITY"		"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_MAGIC_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_ATTACK_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_NO_TEAM_MOVE_TO"			"MODIFIER_STATE_VALUE_ENABLED"
+    			
+    			}
+    		}
+    		
+	}
+
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"movespeed"					"100"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"duration"					"3"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"regen"						"35"
+		}
+		"04"
+		{	
+			"var_type"					"FIELD_INTEGER"
+			"range"						"300"
+		}
+	}
+}

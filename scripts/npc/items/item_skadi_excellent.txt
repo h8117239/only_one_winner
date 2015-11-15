@@ -1,0 +1,59 @@
+//=================================================================================================================
+// Skadi 斯嘉蒂之眼*卓越
+//=================================================================================================================
+"item_skadi_excellent"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"							"2014"								
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_skadi"
+	"AbilityTextureName"			"item_skadi_excellent"
+	"UpgradesItems"					"item_skadi_excellent"
+	"UpgradeRecipe"					"item_recipe_skadi_excellent"
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemQuality"					"artifact"
+	"ItemAliases"					"eos;eye of skadi"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_all_stats"		"60"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"500"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_mana"			"500"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"cold_movement_speed"	"-65"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"cold_attack_speed"		"-60"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"cold_duration_melee"	"6.0"
+		}
+		"07"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"cold_duration_ranged"	"3.5"
+		}
+	}
+}

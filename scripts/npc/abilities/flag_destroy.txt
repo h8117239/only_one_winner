@@ -1,0 +1,86 @@
+"flag_destroy"
+{
+"BaseClass" "ability_datadriven"
+
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityManaCost" "0"
+"AbilityTextureName"            "mirana_arrow"
+    "AbilityManaCost" "0"
+    "ItemBaseLevel"	"1"
+    "MaxLevel"	"1"
+    "AbilityCastRange" "10"
+    "AbilityCastPoint" "10"
+    "IsHidden"	"1"
+    
+    "Modifiers"
+    
+    {
+    	"ExchangeFlagAure"
+    	{
+
+    		"Passive" "1"
+    		"ThinkInterval" "1.0"
+        	"OnIntervalThink" 
+        {
+        	"RunScript"
+        	{
+        		"ScriptFile"		"dota_pvp.lua"
+			"Function"		"ExchangeFlag"
+			"Target"
+			{
+			"Center"	"CASTER"
+			"Radius"	"%radius"
+			"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+			}
+        	}
+
+        	"RunScript"
+    		{
+    		"ScriptFile"		"dota_pvp.lua"
+		"Function"		"SpawnBuilding"
+		"Target"
+		{
+			"Center"	"CASTER"
+			"Radius"	"%range"
+			"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"Types"		"DOTA_UNIT_TARGET_ALL"
+			//"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		}
+    		}	
+        }
+    	}
+
+    	"invulnerable"
+    	{
+    		"Passive"	"1"
+    		"States"
+    		{
+    			// Sub-keys can be found by using "modifierState" constant completions
+    			// Sub-values can be found by using "modifierStateValue" constant completions
+    			//"MODIFIER_STATE_INVULNERABLE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			"MODIFIER_STATE_LOW_ATTACK_PRIORITY"		"MODIFIER_STATE_VALUE_ENABLED"
+    			"MODIFIER_STATE_MAGIC_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_ATTACK_IMMUNE"				"MODIFIER_STATE_VALUE_ENABLED"
+    			//"MODIFIER_STATE_NO_TEAM_MOVE_TO"			"MODIFIER_STATE_VALUE_ENABLED"
+    			
+    		}
+    	}
+    }
+    
+    	"AbilitySpecial"
+	{
+    
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"radius"			"300"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"range"			"2000"
+		}
+	}
+    
+}

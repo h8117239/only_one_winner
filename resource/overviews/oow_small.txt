@@ -1,0 +1,8 @@
+oow_small
+{
+	material materials/overviews/oow_small.vmat
+	pos_x -2048
+	pos_y 2048
+	scale 4.000
+}
+

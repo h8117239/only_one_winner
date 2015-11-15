@@ -1,0 +1,52 @@
+//=================================================================================================================
+// heart_excellent  龙心卓越
+//=================================================================================================================
+"item_heart_excellent"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"						"2007"											
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_heart"
+	"AbilityTextureName"			"item_heart_excellent"
+	"UpgradesItems"					"item_heart_excellent"
+	"UpgradeRecipe"					"item_recipe_heart_excellent"
+	// Stats		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"4.0"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemQuality"					"epic"
+	
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_strength"		"80"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"800"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"health_regen_rate"		"5.25"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"cooldown_melee"		"3"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"cooldown_ranged_tooltip"		"4"
+		}
+	}
+}

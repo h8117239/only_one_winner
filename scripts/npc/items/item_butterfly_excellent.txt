@@ -1,0 +1,49 @@
+//=================================================================================================================
+// Custom: butterfly_excellent  蝴蝶卓越
+//=================================================================================================================
+"item_butterfly_excellent"
+{
+	"ID"							"2005"
+
+	"BaseClass"						"item_butterfly"
+	"AbilityTextureName"			"item_butterfly_excellent"
+	"UpgradesItems"					"item_butterfly_excellent"
+	"UpgradeRecipe"					"item_recipe_butterfly_excellent"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemQuality"					"epic"
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_agility"			"60"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"			"60"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_evasion"			"60"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_attack_speed"	"60"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_move_speed"	"55"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"6"
+		}
+	}
+}

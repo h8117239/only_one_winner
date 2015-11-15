@@ -1,0 +1,42 @@
+"flag_spawner"
+    {
+    "BaseClass" "ability_datadriven"
+
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityManaCost" "0"
+"AbilityTextureName"            "mirana_arrow"
+    "AbilityManaCost" "0"
+    "ItemBaseLevel"	"1"
+    "MaxLevel"	"1"
+    "AbilityCastRange" "10"
+    "AbilityCastPoint" "10"
+    "IsHidden"	"1"
+
+    "OnOwnerDied"
+    {
+    	"RunScript"
+    	{
+    		"ScriptFile"		"dota_pvp.lua"
+		"Function"		"SpawnFlag"
+		"Target"
+		{
+			"Center"	"CASTER"
+			"Radius"	"%radius"
+			"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		}
+    	}
+
+    }
+
+    	"AbilitySpecial"
+	{
+
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"radius"			"300"
+		}
+	}
+
+}

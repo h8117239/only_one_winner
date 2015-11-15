@@ -1,0 +1,173 @@
+//=================================================================================================================
+// fisland:mirana  delay arrow
+//=================================================================================================================
+
+"fis_delay_arrow"
+{
+	"AbilityName"					"fis_delay_arrow"
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"	
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityTextureName"			"greevil_magic_missile"
+	//"ItemBaseLevel"					"0"
+	"precache"
+	{
+		//"particle_folder" 	"particles/econ/generic/generic_aoe_explosion_sphere_1"
+		//"particle_folder"	"particles/units/heroes/hero_enchantress"
+		"particle_folder"	"particles/basic_projectile"
+		"particle_folder"	"particles/units/heroes/hero_templar_assassin"
+
+		//"particle_folder"				"particles/econ/generic/generic_projectile_linear_1"
+		//"particle_folder"				"particles/frostivus_herofx"
+		"particle_folder"				"particles/frostivus_gameplay"
+		"particle_folder"				"particles/units/heroes/hero_antimage"
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+	}
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1400"
+	//施法前摇
+	"AbilityCastPoint"				"0.35 0.35 0.35 0.35"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"0.0 0.0 0.0 0.0"
+	"AbilityDuration"				"15.0 15.0 15.0 15.0"
+
+	// Damage.
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"150 200 250 300"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"30 35 40 45"
+
+	"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
+
+	"OnToggleOn"
+	{
+		"ApplyModifier"
+		{
+			"Target"       "CASTER"
+			"ModifierName" "modifier_toggle"
+		}
+	}
+	"OnToggleOff"
+	{
+		"RemoveModifier"
+		{
+			"Target"       "CASTER"
+			"ModifierName" "modifier_toggle"
+		}
+	}
+	"OnProjectileHitUnit"
+	{
+		"DeleteOnHit" "false"
+		//"ApplyModifier"
+		//{
+		//	"Target" 				"TARGET"
+		//	"Duration"				"%duration_damage"
+		//	"ModifierName"			"modifier_queenofpain_shadow_strike"			
+		//}
+		"FireEffect"
+		{
+			"EffectName" "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+			"EffectAttachType" "world_origin"
+			"TargetPoint" "TARGET"	
+		}	
+		"FireSound"
+		{
+			"EffectName"		"Hero_Antimage.ManaVoidCast"
+			"Target"			"TARGET"
+		}		
+		"Damage"
+		{
+			"Type"		"DAMAGE_TYPE_MAGICAL"
+			"Damage"	"%damage"
+			"Target"	"TARGET"
+		}
+	}
+	 "Modifiers"
+  		{
+	"modifier_toggle"
+	{
+    		"Duration" "-1"
+    		"ThinkInterval" "1"
+    		"OnIntervalThink"
+    		{    	
+	    	"RunScript"
+        		{
+            		"ScriptFile" "dota_pvp.lua"
+            		"Function"   "shoot_toggle"
+        		}	
+			"LinearProjectile"
+			{
+			"Target"				"CASTER"
+			//"EffectName"			"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+			"EffectName"			"particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf"
+			//"EffectName"			"particles/units/heroes/hero_mirana/mirana_base_attack.vpcf"
+			//"EffectName"			"particles/econ/generic/generic_projectile_linear_1/generic_projectile_linear_1.vpcf"
+			//"EffectName"			"particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
+			"MoveSpeed"				"800"
+			"FixedDistance"			"2000"
+			"StartPosition"			"CASTER"
+			"StartRadius"			"100"
+			"EndRadius"				"100" //魔法球的大小  如果碰到目标会结束，不确定
+			"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			//"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+			"HasFrontalCone"		"0"
+			"ProvidesVision"		"1"
+			"VisionRadius"			"300"
+			}
+			//"FireEffect"
+			//{
+			//"EffectName" "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+			//"EffectAttachType" "world_origin"
+			//"TargetPoint" "TARGET"	
+			//}	
+			"FireSound"
+			{
+			"EffectName"		"Hero_Antimage.ManaVoidCast"
+			"Target"			"CASTER"
+			}	
+
+
+    		}
+
+	} 
+	}
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"stun_duration"				"2.0 2.3 2.6 3.0"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"radius"					"200"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"damage"					"100 200 300 400"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"hit_delay"					"0.8"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"collision_radius"			"10"
+		}
+	}
+}

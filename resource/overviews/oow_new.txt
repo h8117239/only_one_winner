@@ -1,0 +1,8 @@
+oow_new
+{
+	material materials/overviews/oow_new.vmat
+	pos_x -4096
+	pos_y 4096
+	scale 8.000
+}
+

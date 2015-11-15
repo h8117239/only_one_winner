@@ -1,0 +1,125 @@
+//=================================================================
+// Creature: green_dragon 绿龙
+//=================================================================
+"boss_green_dragon"
+{
+	// General
+	"BaseClass"					"npc_dota_creature"
+	"Model"						"models/heroes/viper/viper.vmdl"	// Model.
+	"SoundSet"					"Hero_Viper"					// Name of sound set.
+	"ModelScale"				"1.3"								// old 1.0
+	"Level"						"3"
+	"ConsideredHero"			"1"
+	"HealthBarOffset"		"330"
+	"precache"
+	{
+		"particle_folder"	"particles/units/heroes/hero_viper"
+	}
+	// Abilities
+	//----------------------------------------------------------------
+	"Ability1"		"sandking_epicenter"
+	"Ability2"		"viper_nethertoxin"
+	"Ability3"		"viper_corrosive_skin"
+	"Ability4"		""
+	"Ability5"					""
+	"Ability6"					""
+	"Ability7"					""
+	"Ability8"					""
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"40"		// Physical protection.
+	"MagicalResistance"			"0"		// Magical protection.
+
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+	"AttackDamageMin"			"150"		// Damage range min.
+	"AttackDamageMax"			"250"		// Damage range max.
+	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"				"1.0"		// Speed of attack.
+	"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
+	"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+	"AttackRange"				"100"		// Range within a target can be attacked.
+	"ProjectileModel"		"particles/units/heroes/hero_viper/viper_base_attack.vpcf"
+	"ProjectileSpeed"		"1200"
+
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyXP"					"300"		// Experience earn.
+	"BountyGoldMin"				"800"		// Gold earned min.
+	"BountyGoldMax"				"1500"		// Gold earned max.
+
+	// Bounds
+	//----------------------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_HERO"		// Hull type used for navigation/locomotion.
+	"HealthBarOffset"			"140"
+
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+	"MovementSpeed"				"300"		// Speed
+	"MovementTurnRate"			"0.75"		// Turning rate.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"4000"		// Base health.
+	"StatusHealthRegen"			"0"		// Health regeneration rate.
+	"StatusMana"				"0"			// Base mana.
+	"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+	"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+	//Precache
+	//------------------------------------------------------------------
+	"VoiceFile"					"soundevents/voscripts/game_sounds_vo_viper.vsndevts"
+	"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+
+	"ShouldDoFlyHeightVisual" "0"
+	"Creature"
+	{			
+		"DefaultState"				"Invade"
+		"States"
+		{
+			"Invade"
+			{
+				"Name"				"Invade"
+				"Aggression"		"30.0"
+				"Avoidance"			"1.0"
+				"Support"			"0.0"
+				"RoamDistance"		"0.0"
+			}
+		}
+
+		"OffensiveAbilities"
+		{
+			"Ability1"				
+			{
+				"Name"				"sandking_epicenter"
+				//"Damage"			"1"
+				//"Debuff"			"1"
+			    //"AOE"                "1"
+        			"Radius"             "675"
+        			"MinimumTargets"     "1"
+			}
+		}
+		
+		"EscapeAbilities"
+		{
+			"Ability1"				
+			{
+				"Name"				"sandking_epicenter"
+			}
+		}
+	}
+}

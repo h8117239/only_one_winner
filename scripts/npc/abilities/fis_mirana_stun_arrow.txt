@@ -1,0 +1,130 @@
+"fis_mirana_stun_arrow"
+{
+	"AbilityName"					"fis_mirana_stun_arrow"
+	"BaseClass"						"ability_datadriven"
+	"MaxLevel"          			"5"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"	
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	"AbilityTextureName"			"mirana_arrow"		
+	//"ItemBaseLevel"					"0"
+	"precache"
+	{
+		"particle_folder" 	"particles/econ/generic/generic_aoe_explosion_sphere_1"
+		"particle_folder"	"particles/units/heroes/hero_enchantress"
+		"particle_folder"	"particles/units/heroes/hero_vengeful"
+
+
+		"particle_folder"				"particles/econ/generic/generic_projectile_linear_1"
+		"particle_folder"				"particles/frostivus_herofx"
+		"particle_folder"				"particles/frostivus_gameplay"
+		"particle_folder"				"particles/particles/units/heroes/hero_queenofpain"
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+	}
+
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1100"
+	//施法前摇
+	"AbilityCastPoint"				"0.35"
+
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"1.5 1.5 1.5 1.5 1.5"
+	//"AbilityDuration"				"15.0 15.0 15.0"
+
+	// Damage.
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"80 100 120 140 160"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"50 60 70 80 90"
+
+	"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
+
+	//释放技能
+	"OnSpellStart"
+	{
+
+
+		"LinearProjectile"
+		{
+			"Target"				"POINT"
+			//"EffectName"			"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+			"EffectName"			"particles/basic_projectile/basic_projectile.vpcf"
+			//"EffectName"			"particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf"
+			//"EffectName"			"particles/econ/generic/generic_projectile_linear_1/generic_projectile_linear_1.vpcf"
+			//"EffectName"			"particles/units/heroes/ hero_enchantress/enchantress_impetus.vpcf"
+			"MoveSpeed"				"750"
+			"StartPosition"			"attach_attack1"
+			"StartRadius"			"100"
+			"EndRadius"				"100" //魔法球的大小  如果碰到目标会结束，不确定
+			"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"TargetTypes"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_HERO"
+			//"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+			"HasFrontalCone"		"1" //
+			"ProvidesVision"		"1"
+			"VisionRadius"			"300"
+		}
+	}
+	//轨迹法术碰到目标
+	"OnProjectileHitUnit"
+	{
+
+
+		"RunScript"
+		{
+				"ScriptFile"		"dota_pvp.lua"
+				"Function"		"MiranaStunArrow"
+				"Target"			"TARGET"
+		}
+
+					
+
+
+//延迟action,这里设为0延迟，因为已经选择在法术弹道结束后执行
+		//"DelayedAction"
+//
+		//	"Delay"			"0.5"
+	//		"Action"
+	//		{
+	//			"ActOnTargets"
+		//		{
+				
+
+		//			"Action"
+		//			{
+						//"Damage"
+						//{
+						//	"Type" "DAMAGE_TYPE_MAGICAL"
+						//	"Damage" "%damage"
+						//	"Target" "TARGET"
+						//}
+
+
+
+				//}
+
+		
+
+
+			//}
+		//}
+
+	}
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"stun_duration"				"0.1"
+		}
+	}
+}

@@ -1,0 +1,22 @@
+"addon"
+{
+	"addonname"	"Only One Winner"
+	"ConquestTeamPoints"							""
+	"custom_end_screen_victory_condition"	"Only One Winner"
+	"Radiant_Team"									"Radiant"
+	"Dire_Team"										"Dire"
+
+	"game_info_header_objective"			"Objective:"
+	"brief_description"					"Only <span class='resource'>One Player</span> can win. One of your teammates will become enemy when you kill someone。When you are the only hero in your team , you <span class='resource'>WIN</span>！ "
+	"game_info_header_playable_modes"			"Playable Modes:"
+	"game_info_header_playable_modes_dec"			"<span class='mode'>rob</span> and <span class='mode'>PVP</span>"
+	"game_info_header_how_to_play"		"How To Play:"
+	"game_info_throne"					"Every once in a while, the map will have two fixed location, was born the <span class='flag'>treasure chest</span>.，Take the <span class='flag'>treasure box</span>, which possess the power will make you very strong。"
+	"game_info_coins"						"The four corners of the map will be constantly refresh rune"
+	"game_info_items"						"Good at using the initial gift items <span class='building'>Fly</span> "
+	"game_info_tips_header"				"Key to Victory:"
+	"game_info_tip01"						"KS！！！"
+	"game_info_tip02"						"Protect your teammates, let them from being killed by the enemy"
+	"game_info_tip03"						"Beware of your teammates, don't let them kill too many people"
+	"game_info_tip04"						"Yes, the game without a friend! Only One Winner!"
+}

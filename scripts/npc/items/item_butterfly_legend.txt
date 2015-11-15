@@ -1,0 +1,47 @@
+//=================================================================================================================
+// Custom: butterfly_legend  蝴蝶传说
+//=================================================================================================================
+"item_butterfly_legend"
+{
+	"ID"							"2016"
+
+	"BaseClass"						"item_butterfly"
+	"AbilityTextureName"			"item_butterfly_legend"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemQuality"					"epic"
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_agility"			"70"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"			"700"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_evasion"			"70"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_attack_speed"	"60"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_move_speed"	"55"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"6"
+		}
+	}
+}
