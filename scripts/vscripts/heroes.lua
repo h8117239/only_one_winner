@@ -54,8 +54,14 @@ function ChangeOnePlayerToOtherTeam( attack_hero_unit )
     	return
     end   		
 
-	local num = RandomInt(0, HeroList:GetHeroCount()-1)
+	local num = RandomInt(0, GetPlayerNumber()-1)
+	print("HeroList:GetHeroCount()".. GetPlayerNumber())
+	print("player id ..".. num)
 	local hero = get_hero_by_player(num)
+	if not hero then
+		ChangeOnePlayerToOtherTeam(attack_hero_unit)
+	end
+
 	if hero:GetTeam()==attack_hero_unit:GetTeam() and num~=attack_hero_unit:GetPlayerID() then
     	if hero:GetTeam()==DOTA_TEAM_GOODGUYS then
     		PlayerResource:SetCustomTeamAssignment(num,DOTA_TEAM_BADGUYS)
@@ -90,9 +96,15 @@ function ChangeOnePlayerToOtherTeam( attack_hero_unit )
     					}, duration=1.0})  
     				EmitGlobalSound("General.PingWarning")
     				count = count-1
-    				-- print(tostring(count))
       				return 1.0
       			elseif count<0 then
+      				EmitAnnouncerSoundForTeam("announcer_ann_custom_end_10",attack_hero_unit:GetTeamNumber() )
+      				EmitAnnouncerSoundForTeam("announcer_ann_custom_end_01",attack_hero_unit:GetTeamNumber() )
+      				if attack_hero_unit:GetTeamNumber() ==DOTA_TEAM_GOODGUYS then
+      					EmitAnnouncerSoundForTeam("announcer_ann_custom_end_04",DOTA_TEAM_BADGUYS )
+      				else
+          				EmitAnnouncerSoundForTeam("announcer_ann_custom_end_04",DOTA_TEAM_GOODGUYS )  					
+      				end     				
       				GameRules:SetGameWinner( attack_hero_unit:GetTeamNumber() )
       				return nil
       			else

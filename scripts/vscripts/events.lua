@@ -50,8 +50,7 @@ function OOW:OnItemPickUp( event )
 		UTIL_Remove( item ) -- otherwise it pollutes the player inventory
 	end
 	if event.itemname == "item_blessing_of_heaven" then
-		--print("Potion picked up")
-		--StartSoundEvent( "DOTA_Item.HealingSalve.Activate", owner )
+    	EmitGlobalSound("General.PingWarning")
 		local min_idx = RandomInt(1,#blesses) 
 		local modifier_name = blesses[min_idx]
 		-- modifier_name = blesses[2]
@@ -131,4 +130,40 @@ function OOW:OnNPCSpawned( event )
 		end
 		end
   	end
+end
+
+
+
+
+
+function OOW:OnWaypointStartTouch( hero, team, heroIndex )
+	local teleportUnit = EntIndexToHScript( heroIndex )
+	if teleportUnit:IsRealHero() ~= true then
+		return
+	end
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		--print(hero .. " is using the waypoint" )
+		local heroHandle = EntIndexToHScript(heroIndex)
+		local player = heroHandle:GetPlayerID()
+		
+		heroHandle:Stop()
+		--DoEntFire( "death_".. m_team_name[team] .."_teleport", "TeleportEntity", hero, 0, self, self )
+		local exit = Entities:FindByName( nil, "teleport_exit" )
+		-- if team == DOTA_TEAM_BADGUYS then
+		-- 	exit = Entities:FindByName( nil, "death_dire_teleport" )
+		-- end
+		local exitPosition = exit:GetAbsOrigin()
+		-- Teleport the hero
+		FindClearSpaceForUnit( heroHandle, exitPosition, true );
+
+		local tpEffects = ParticleManager:CreateParticle( "particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015.vpcf", PATTACH_ABSORIGIN, heroHandle )
+		ParticleManager:SetParticleControlEnt( tpEffects, PATTACH_ABSORIGIN, heroHandle, PATTACH_ABSORIGIN, "attach_origin", heroHandle:GetAbsOrigin(), true )
+		heroHandle:Attribute_SetIntValue( "effectsID", tpEffects )
+
+		DoEntFire( "teleport_ent", "Start", "", 0, self, self )
+		PlayerResource:SetCameraTarget( player, heroHandle )
+		StartSoundEvent( "Portal.Hero_Appear", heroHandle )
+		heroHandle:SetContextThink( "KillSetCameraTarget", function() return PlayerResource:SetCameraTarget( player, nil ) end, 0.2 )
+		heroHandle:SetContextThink( "KillTPEffects", function() return ParticleManager:DestroyParticle( tpEffects, true ) end, 3 )
+	end
 end

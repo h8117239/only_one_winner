@@ -64,44 +64,44 @@ function Precache( context )
 	PrecacheItemByNameSync( "item_mango_juice", context )
 	PrecacheModel( "item_mango_juice", context )
 
-	PrecacheItemByNameSync( "item_candy", context )
-	PrecacheModel( "item_candy", context )
+	PrecacheItemByNameSync( "item_halloween_candy", context )
+	PrecacheModel( "item_halloween_candy", context )
 
 
-	PrecacheUnitByNameAsync( "npc_dota_creature_basic_zombie", function(unit) end )
-    PrecacheModel( "npc_dota_creature_basic_zombie", context )
-    PrecacheUnitByNameAsync( "npc_dota_creature_berserk_zombie", function(unit) end )
-    PrecacheModel( "npc_dota_creature_berserk_zombie", context )
-    PrecacheUnitByNameAsync( "slark", function(unit) end )
-    PrecacheModel( "slark", context )
-    PrecacheUnitByNameAsync( "meepo", function(unit) end )
-    PrecacheModel( "meepo", context )
-    PrecacheUnitByNameAsync( "npc_dota_lone_druid_bear1", function(unit) end )
-    PrecacheModel( "npc_dota_lone_druid_bear1", context )
-    PrecacheUnitByNameAsync( "npc_dota_brewmaster_earth_1", function(unit) end )
-    PrecacheModel( "npc_dota_brewmaster_earth_1", context )
-    PrecacheUnitByNameAsync( "npc_dota_brewmaster_fire_1", function(unit) end )
-    PrecacheModel( "npc_dota_brewmaster_fire_1", context )
-    PrecacheUnitByNameAsync( "npc_dota_brewmaster_storm_1", function(unit) end )
-    PrecacheModel( "npc_dota_brewmaster_storm_1", context )
-    PrecacheUnitByNameAsync( "npc_dota_necronomicon_warrior_1", function(unit) end )
-    PrecacheModel( "npc_dota_necronomicon_warrior_1", context )
-    PrecacheUnitByNameAsync( "npc_dota_beastmaster_boar", function(unit) end )
-    PrecacheModel( "npc_dota_beastmaster_boar", context )
-    PrecacheUnitByNameAsync( "npc_dota_flag", function(unit) end )
-    PrecacheModel( "npc_dota_flag", context )
-    PrecacheUnitByNameAsync( "npc_dota_good_flag", function(unit) end )
-    PrecacheModel( "npc_dota_good_flag", context )
-    PrecacheUnitByNameAsync( "npc_dota_bad_flag", function(unit) end )
-    PrecacheModel( "npc_dota_bad_flag", context )
-    PrecacheUnitByNameAsync( "boss_roshan", function(unit) end )
-    PrecacheModel( "boss_roshan", context )
-    PrecacheUnitByNameAsync( "boss_spider", function(unit) end )
-    PrecacheModel( "boss_spider", context )
-    PrecacheUnitByNameAsync( "boss_green_dragon", function(unit) end )
-    PrecacheModel( "boss_green_dragon", context )
-    PrecacheUnitByNameAsync( "dotb_buiding_defender_fort", function(unit) end )
-    PrecacheModel( "dotb_buiding_defender_fort", context )
+	-- PrecacheUnitByNameAsync( "npc_dota_creature_basic_zombie", function(unit) end )
+ --    PrecacheModel( "npc_dota_creature_basic_zombie", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_creature_berserk_zombie", function(unit) end )
+ --    PrecacheModel( "npc_dota_creature_berserk_zombie", context )
+ --    PrecacheUnitByNameAsync( "slark", function(unit) end )
+ --    PrecacheModel( "slark", context )
+ --    PrecacheUnitByNameAsync( "meepo", function(unit) end )
+ --    PrecacheModel( "meepo", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_lone_druid_bear1", function(unit) end )
+ --    PrecacheModel( "npc_dota_lone_druid_bear1", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_brewmaster_earth_1", function(unit) end )
+ --    PrecacheModel( "npc_dota_brewmaster_earth_1", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_brewmaster_fire_1", function(unit) end )
+ --    PrecacheModel( "npc_dota_brewmaster_fire_1", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_brewmaster_storm_1", function(unit) end )
+ --    PrecacheModel( "npc_dota_brewmaster_storm_1", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_necronomicon_warrior_1", function(unit) end )
+ --    PrecacheModel( "npc_dota_necronomicon_warrior_1", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_beastmaster_boar", function(unit) end )
+ --    PrecacheModel( "npc_dota_beastmaster_boar", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_flag", function(unit) end )
+ --    PrecacheModel( "npc_dota_flag", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_good_flag", function(unit) end )
+ --    PrecacheModel( "npc_dota_good_flag", context )
+ --    PrecacheUnitByNameAsync( "npc_dota_bad_flag", function(unit) end )
+ --    PrecacheModel( "npc_dota_bad_flag", context )
+ --    PrecacheUnitByNameAsync( "boss_roshan", function(unit) end )
+ --    PrecacheModel( "boss_roshan", context )
+ --    PrecacheUnitByNameAsync( "boss_spider", function(unit) end )
+ --    PrecacheModel( "boss_spider", context )
+ --    PrecacheUnitByNameAsync( "boss_green_dragon", function(unit) end )
+ --    PrecacheModel( "boss_green_dragon", context )
+ --    PrecacheUnitByNameAsync( "dotb_buiding_defender_fort", function(unit) end )
+ --    PrecacheModel( "dotb_buiding_defender_fort", context )
     PrecacheUnitByNameAsync( "npc_dota_dummy_caster", function(unit) end )
     PrecacheModel( "npc_dota_dummy_caster", context )
     PrecacheUnitByNameAsync( "npc_dota_dummy_caster_bad", function(unit) end )
@@ -109,15 +109,15 @@ function Precache( context )
 
 	-- PrecacheResource( "model", "models/projectiles/mirana_arrow.vmdl", context )
 	-- PrecacheResource( "model", "*.vmdl", context )
-	PrecacheResource( "model", "models/heroes/death_prophet/death_prophet_ghost.vmdl", context )
-	PrecacheResource( "model", "models/heroes/warlock/warlock_demon.vmdl", context )
+	-- PrecacheResource( "model", "models/heroes/death_prophet/death_prophet_ghost.vmdl", context )
+	-- PrecacheResource( "model", "models/heroes/warlock/warlock_demon.vmdl", context )
 	-- PrecacheResource( "soundfile", "*.vsndevts", context )
 	-- PrecacheResource( "particle", "*.vpcf", context )
 	-- 预存mirana的一些特效，否则其他它的技能无法赋予其他英雄
-	PrecacheResource( "particle_folder", "particles/units/heroes/hero_tidehunter", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_tidehunter.vsndevts", context )
-	PrecacheResource( "particle_folder", "particles/units/heroes/hero_broodmother", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_broodmother.vsndevts", context )
+	-- PrecacheResource( "particle_folder", "particles/units/heroes/hero_tidehunter", context )
+	-- PrecacheResource( "soundfile", "soundevents/game_sounds_tidehunter.vsndevts", context )
+	-- PrecacheResource( "particle_folder", "particles/units/heroes/hero_broodmother", context )
+	-- PrecacheResource( "soundfile", "soundevents/game_sounds_broodmother.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_luna", context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_luna.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_spirit_breaker", context )
@@ -135,7 +135,7 @@ function Precache( context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_skeletonking", context )
 	
 	-- PrecacheResource("particle_folder","particles/units/heroes/hero_vengeful/vengeful_magic_missle",context)
-	PrecacheResource("soundfile", "soundevents/game_sounds_custom.vsndevts", context)
+	-- PrecacheResource("soundfile", "soundevents/game_sounds_custom.vsndevts", context)
 	PrecacheResource( "soundfile", "soundevents/game_sounds_main.vsndevts", context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_triggers.vsndevts", context )
 	
@@ -150,13 +150,11 @@ function Precache( context )
 	PrecacheResource( "particle_folder", "particles/econ/items/spectre/spectre_phantasmal", context )
 	PrecacheResource( "particle_folder", "particles/econ/items/luna/luna_lucent_ti5", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_omniknight", context )
+	PrecacheResource( "particle_folder", "particles/econ/events/fall_major_2015", context )
 
 	print("precache end")
 end
 
-if OOW == nil then
-	OOW = class({})
-end
 
 --------------------------------------------------------------------------------
 -- ACTIVATE
@@ -294,9 +292,35 @@ function OOW:InitGameMode()
 
 end
 
+function OOW:EnableWaypoint( )
+	local entranceRadiant = Entities:FindByName( nil, "teleport_ent" )
+	local exitRadiant = Entities:FindByName( nil, "teleport_exit" )
+	if entranceRadiant ~= nil and exitRadiant ~= nil then
+		print ("AddMinimapDebugPoint")
+		GameRules:AddMinimapDebugPoint( -entranceRadiant:entindex(), entranceRadiant:GetAbsOrigin(), 0, 255,0, 300, 100)
+		GameRules:AddMinimapDebugPoint( -exitRadiant:entindex(), exitRadiant:GetAbsOrigin(), 0, 255, 0, 200, 300)
+		PingMiniMapAtLocation(entranceRadiant:GetAbsOrigin() )
+		PingMiniMapAtLocation(exitRadiant:GetAbsOrigin() )
+	end
+end
+
+function OOW:EnableRunepoint()
+	for i=1,4 do
+		local cp = Entities:FindByName( nil, "dota_item_rune_spawner"..i )
+	  		PingMiniMapAtLocation(cp:GetAbsOrigin() )
+	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 0,0, 255, 300, 100)		
+	end
+end
+
 function OOW:EnableBlessingPoint(  )
+
+
 	-- 固定地点宝箱
 	for i=1,2 do
+		local cp = Entities:FindByName( nil, "cp_"..i )
+	  		PingMiniMapAtLocation(cp:GetAbsOrigin() )
+	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 255, 255, 0, 300, 100)
+
   Timers:CreateTimer(30*i, function()
   	  local cp = Entities:FindByName( nil, "cp_"..i )
       local item_name = "item_blessing_of_heaven"
@@ -788,11 +812,14 @@ function OOW:GameThink()
 		-- self:LoadSkillGroups()
 		continue_count =  PlayerResource:GetPlayerCount()
 		self:EnableBlessingPoint()
+		self:EnableWaypoint()
+		self:EnableRunepoint()
 		self.isLoad = true
 		-- self:CreateWeatherCaster()
 		-- EmitGlobalSound("Bgm.Bgm")
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 10 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 10 )
+
 	end
 
 
@@ -811,59 +838,6 @@ function OOW:GameThink()
 		if fort_good then
 			fort_good:SetThink("CameraThink",self,0.1)
 		end
-		-- if not IS_PVP then
-
-		-- 	local sp_farm = Entities:FindByName( nil, "sp_farm")
-		-- 	local sp_pit = Entities:FindByName( nil, "sp_pit")
-		-- 	local sp_sm1 = Entities:FindByName( nil, "sp_smithy1")
-		-- 	local sp_sm2 = Entities:FindByName( nil, "sp_smithy2")
-
-		-- 	if isbad("npc_dota_farm") then
-		-- 		sp_farm:SetTeam(BADGUY_TEAM)
-		-- 	else
-		-- 		sp_farm:SetTeam(GOODGUY_TEAM)
-		-- 	end
-		-- 	if isbad("npc_dota_pit") then
-		-- 		sp_pit:SetTeam(BADGUY_TEAM)
-		-- 	else
-		-- 		sp_pit:SetTeam(GOODGUY_TEAM)
-		-- 	end
-		-- 	if isgood("npc_dota_smithy") and sp_sm1 and sp_sm2 then
-		-- 		sp_sm1:SetTeam(GOODGUY_TEAM)
-		-- 		sp_sm2:SetTeam(GOODGUY_TEAM)
-		-- 	elseif sp_sm1 and sp_sm2 then
-		-- 		sp_sm1:SetTeam(BADGUY_TEAM)
-		-- 		sp_sm2:SetTeam(BADGUY_TEAM)
-		-- 	end
-		-- 	-- if isbad("npc_dota_smithy") and isbad("npc_dota_ore") and isbad("npc_dota_mill")  and  isbad("npc_dota_pit")   and isbad("npc_dota_farm") then
-		-- 	-- 	self:EndGame(BADGUY_TEAM)
-		-- 	-- end
-		-- end
-		-- if self.isLoad then
-		-- 	local bad = cal_bad()/6
-		-- 	local good = cal_good()/6
-		-- 	SCORE.bad = SCORE.bad + bad
-		-- 	SCORE.good = SCORE.good + good
-		-- 	if bad==5 then
-		-- 		SCORE.bad = SCORE.bad + 0.4
-		-- 	end
-		-- 	if good==5 then
-		-- 		SCORE.good = SCORE.good + 0.4
-		-- 	end	
-		-- 	-- print("SetTeamValue good" .. SCORE.good)
-		-- 	SetTeamValue(GOODGUY_TEAM,SCORE.good)	
-		-- 	SetTeamValue(BADGUY_TEAM,SCORE.bad)		
-		-- 	-- self.ScoreQuest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, SCORE.good )
-
-		-- 	-- self.ScoreQuest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, SCORE.bad )
-		-- 	if SCORE.bad>=WIN_SCORE then
-		-- 		GameRules:SetGameWinner(BADGUY_TEAM)
-		-- 	elseif SCORE.good>=WIN_SCORE then
-		-- 		self:DefenseWin()
-		-- 		return 7
-		-- 	end
-		-- end
-
 
 	return 1.5
 end
@@ -915,39 +889,10 @@ function OOW:CameraThink()
 end
 
 function OOW:EndGame( victoryTeam )
-	-- print("EndGame "..self._gameTime .. " "..victoryTeam)
-	-- local good = Entities:FindByName( nil, "dota_goodguys_fort" )
-	-- if good then
-	-- 	local celebrate2 = good:FindAbilityByName( 'dota_ability_celebrate' )
-	-- 	if celebrate then
-	-- 		good:CastAbilityNoTarget( celebrate2, -1 )
-	-- 	end
-	-- end
 	GameRules:SetGameWinner( victoryTeam )
-	-- if  good then
-	-- 	local celebrate2 = good:FindAbilityByName( 'dota_ability_celebrate' )
-	-- 	if celebrate then
-	-- 		good:CastAbilityNoTarget( celebrate2, -1 )
-	-- 	end
-	-- end
 end
 
 function UpdateState(  )
--- 	local spawnedUnit = HeroList:GetAllHeroes()
--- 	if spawnedUnit then
--- 		for i,v in pairs(spawnedUnit) do
--- 			if v:IsHero() then
--- 				OOW:InitHeroAttribute(v) 	
---   		-- InitHeroInfo(v:GetUnitName() .. v:)
---   		-- print(v:GetUnitName() )
---   		-- local int = v:GetIntellect()
---   		-- local dmg = CalExDamage(v)
---   		-- if dmg then
---   		-- GetHeroInfoByHeroId(v:GetUnitName()):UpdateExDanage(dmg)
---   	-- end
---   end
--- end
--- end
 end
 
 function CalExDamage( hero )

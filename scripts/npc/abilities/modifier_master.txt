@@ -7,7 +7,7 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName" "rubick_spell_steal"	
+	//"AbilityTextureName" "rubick_spell_steal"	
 	// Stats
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastRange"				"100"
@@ -68,6 +68,7 @@
 		"blessing_of_heaven"
 		{
 
+			"TextureName" "attribute_bonus"
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" 
 			"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
 			"EffectAttachType" "follow_origin"
@@ -87,6 +88,7 @@
 
 		"modifier_blessing_of_hell"
         {
+        	"TextureName" "dazzle_shallow_grave"
 			"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
 			"EffectAttachType" "follow_origin"
             "OnTakeDamage"
@@ -104,7 +106,7 @@
 		//薄葬
 		"modifier_shallow_grave_datadriven"
 		{
-			//"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" 
+			"TextureName" "dazzle_shallow_grave"
             "EffectName"        "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
             "EffectAttachType"  "follow_origin"
     
@@ -239,6 +241,7 @@
 
         "modifier_think_invis"
         {
+        	"TextureName" "clinkz_wind_walk"
         	"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
 			"EffectAttachType" "follow_origin"
 
@@ -258,6 +261,7 @@
 
         "modifier_think_momian"
         {
+        	"TextureName" "item_black_king_bar"
         	"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
 			"EffectAttachType" "follow_origin"
 
