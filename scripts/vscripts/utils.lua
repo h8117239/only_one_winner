@@ -236,16 +236,16 @@ function SetTeamValue(  team, value )
 end
 
 function FindClearSpace( unit, bond ,radios)
-    local origin=RandomVector( RandomFloat(-bond,bond ) )
-    if not HasEnemy(origin,radios,unit) and not GridNav:IsNearbyTree(origin,radios,true) then
-        originn = origin + Vector(0,0,200)
-        unit:SetAbsOrigin(originn)
+    local end1 = Entities:FindByName( nil, "cp_1"):GetAbsOrigin() 
+    local end2 = Entities:FindByName( nil, "cp_2"):GetAbsOrigin() 
+    local origin=RandomVector( RandomFloat(0,bond ) )
+    if not HasEnemy(origin,radios,unit) and (GridNav:CanFindPath(origin,end1) or GridNav:CanFindPath(origin,end2))then
+        unit:SetAbsOrigin(origin)
         FindClearSpaceForUnit(hero, origin, false)
         unit:AddNewModifier(nil, nil, "modifier_phased", {duration=2})
         if unit:IsRealHero() then
             PlayerResource:SetCameraTarget( unit:GetPlayerID() , unit )
             unit:SetContextThink( "KillSetCameraTarget", function() return PlayerResource:SetCameraTarget( unit:GetPlayerID(), nil ) end, 0.2 )
-            -- heroHandle:SetContextThink( "KillTPEffects", function() return ParticleManager:DestroyParticle( tpEffects, true ) end, 3 )
         end
     else
         FindClearSpace( unit, bond,radios)
@@ -253,10 +253,11 @@ function FindClearSpace( unit, bond ,radios)
 end
 
 function FindClearSpacePos(bond ,radios)
-    local origin=RandomVector( RandomFloat(-bond,bond ) )
-    if not GridNav:IsNearbyTree(origin,radios,true) then
-        originn = origin + Vector(0,0,200)  
-        return originn      
+    local end1 = Entities:FindByName( nil, "cp_1"):GetAbsOrigin() 
+    local end2 = Entities:FindByName( nil, "cp_2"):GetAbsOrigin() 
+    local origin=RandomVector( RandomFloat(0,bond ) )
+    if GridNav:CanFindPath(origin,end1) or GridNav:CanFindPath(origin,end2) then
+        return origin      
     else
         return FindClearSpacePos(bond,radios)
     end

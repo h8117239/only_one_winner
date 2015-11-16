@@ -23,7 +23,7 @@ function item_fly_spell_start(keys)
 
     if target==caster then
         ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
-        FindClearSpace(target, 2000 ,100)   
+        FindClearSpace(target,2000,100)  
         ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, target)
     else
         local i  = RandomInt(1, 100) 
@@ -34,7 +34,7 @@ function item_fly_spell_start(keys)
         end
 
         ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
-        FindClearSpace(target, 2000 ,100)   
+        FindClearSpace(target,2000,100)  
         ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, target)
     end
 

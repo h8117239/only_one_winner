@@ -14,6 +14,8 @@ function Hero:Load( unit )
 	self.player_id = unit:GetPlayerID() 
 	self.spawnPos = nil
 	self.team = unit:GetTeam()
+	-- self.had_died = false
+	-- self.unit.heroinfo = self
 end
 
 

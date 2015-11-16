@@ -48,11 +48,15 @@ count = DEFAULT_COUNT
 
 function ChangeOnePlayerToOtherTeam( attack_hero_unit )	
 
-    if HeroList:GetHeroCount() < 4 then
+    if GetPlayerNumber() < 4 then
     	Notifications:TopToAll({text="#PlayerNumberWarning",style={color="red"}, duration=5.0})
     	-- GameRules:SetGameWinner( attack_hero_unit:GetTeam() )
     	return
-    end   		
+    end   	
+
+    if PlayerResource:GetPlayerCountForTeam(attack_hero_unit:GetTeam())==1 then
+    	return
+    end
 
 	local num = RandomInt(0, GetPlayerNumber()-1)
 	print("HeroList:GetHeroCount()".. GetPlayerNumber())
@@ -124,9 +128,6 @@ end
 
 
 
-function SetNextRespawnPos(killedHero)
-
-end
 
 function InitHeroInfo(hero_info) 
 	local hero = hero_info:GetUnitName() 
@@ -142,10 +143,15 @@ function InitHeroInfo(hero_info)
 			break
 		end
 	end
+	-- FindClearSpace(hero_info,2000,400)
 	if exsit	then
 		print("Player HeroInfo already inited")
+		-- if hero_info.heroinfo.had_died then
+			-- FindClearSpace(hero_info,2000,400)
+		-- end
 	else
 		print("inite player " .. hero)
+		FindClearSpace(hero_info,2000,100)  
 		local hero_obj = Hero()
 		hero_obj:Load(hero_info)
 		-- 飞
@@ -162,12 +168,6 @@ function InitHeroInfo(hero_info)
 		-- hero_info:SetBaseMaxHealth(health)
   --       hero_info:SetHealth(health)
 		PlayerResource:SetGold(player_id,2000,false)
-			-- for i=1,6 do
-			-- 	PlayerResource:HeroLevelUp(player_id)
-			-- end
-
-
-
 		table.insert(HeroTable,hero_obj)
 
 	end

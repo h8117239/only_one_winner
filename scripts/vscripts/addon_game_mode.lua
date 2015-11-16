@@ -211,38 +211,37 @@ function OOW:InitGameMode()
 	GameRules:SetHeroRespawnEnabled( true )
 	GameRules:SetUseUniversalShopMode( true )
 	GameRules:SetHeroSelectionTime( 20.0 )
-	GameRules:SetPreGameTime( 8.0 )
-	GameRules:SetPostGameTime( 8.0 )
+	GameRules:SetPreGameTime( 10.0 )
+	-- GameRules:SetPostGameTime( 8.0 )
 	GameRules:SetTreeRegrowTime( 60.0 )
 	GameRules:GetGameModeEntity():SetFixedRespawnTime( 18 )	
 	-- GameRules:SetHeroMinimapIconSize( 400 )
 	-- GameRules:SetCreepMinimapIconScale( 0.7 )
-	-- GameRules:SetRuneMinimapIconScale( 0.7 )
+	-- GameRules:SetRuneMinimapIconScale( 0.7 )i
 	-- GameRules:GetGameModeEntity():SetFogOfWarDisabled( true )
 	GameRules:SetGoldTickTime( 3 )
 	GameRules:SetGoldPerTick( 5 )
-	-- GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( false )
+	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	-- GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled( false )
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath( false )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( false )
-	GameRules:GetGameModeEntity():SetRuneEnabled( 0, true ) --双倍
-	GameRules:GetGameModeEntity():SetRuneEnabled( 1, true ) --极速
-	GameRules:GetGameModeEntity():SetRuneEnabled( 2, true ) --回复
-	GameRules:GetGameModeEntity():SetRuneEnabled( 3, true ) --Invis
-	GameRules:GetGameModeEntity():SetRuneEnabled( 4, false ) --幻象
-	GameRules:GetGameModeEntity():SetRuneEnabled( 5, false ) --Bounty
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 0, true ) --双倍
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 1, true ) --极速
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 2, true ) --回复
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 3, true ) --Invis
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 4, false ) --幻象
+	-- GameRules:GetGameModeEntity():SetRuneEnabled( 5, false ) --Bounty
 	GameRules:SetRuneSpawnTime (30)
 	GameRules:GetGameModeEntity():SetStickyItemDisabled( true ) --Remove TP Scroll
 	-- Register Think
 	print("HELLO DOTA**********************************************")
-	if not IS_PVP then
-		sendTips("#tips")
-	else
-		sendTips("#tips_pvp")
-		-- self:ShowScore()
-	end
+	-- if not IS_PVP then
+	-- 	sendTips("#tips")
+	-- else
+	-- 	sendTips("#tips_pvp")
+	-- end
 	GameRules:GetGameModeEntity():SetThink( "GameThink", self, 1 ) 
 
   -- Event Hooks
@@ -265,7 +264,7 @@ function OOW:InitGameMode()
   -- ListenToGameEvent('tree_cut', Dynamic_Wrap(OOW, 'OnTreeCut'), self)
   -- ListenToGameEvent('entity_hurt', Dynamic_Wrap(OOW, 'OnEntityHurt'), self)
   -- ListenToGameEvent('player_connect', Dynamic_Wrap(OOW, 'PlayerConnect'), self)
-  ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(OOW, 'OnAbilityUsed'), self)
+  -- ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(OOW, 'OnAbilityUsed'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(OOW, 'OnGameRulesStateChange'), self)
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(OOW, 'OnNPCSpawned'), self)
   -- ListenToGameEvent("player_reconnected", Dynamic_Wrap(OOW, 'OnPlayerReconnect'), self)
@@ -281,16 +280,58 @@ function OOW:InitGameMode()
   -- ListenToGameEvent('entity_hurt',  Dynamic_Wrap(OOW, 'OnEntityHurt'), self)
   ListenToGameEvent('dota_player_pick_hero',  Dynamic_Wrap(OOW, 'OnHeroSelected'), self)
 
+  GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( OOW, "ModifyGoldFilter" ), self )
+  GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( OOW, "ModifyExperienceFilter" ), self )
   -- 监听PUI的事件
-  CustomGameEventManager:RegisterListener( "OnHardLevelSelect", OnHardLevelSelect )
-  CustomGameEventManager:RegisterListener( "OnContinueOrCancel", OnContinueOrCancel )
+  -- CustomGameEventManager:RegisterListener( "OnHardLevelSelect", OnHardLevelSelect )
+  -- CustomGameEventManager:RegisterListener( "OnContinueOrCancel", OnContinueOrCancel )
 
 
   -- self:BuildTrees()
   self:LoadSpawners()
-
+  self:SetUpFountains()
 
 end
+
+function OOW:ModifyGoldFilter( filterTable )
+	--[[for k, v in pairs( filterTable ) do
+		print("ModifyGold: " .. k .. " " .. tostring(v) )
+	end
+	]]
+	--local reason = filterTable["reason_const"]
+	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		return false
+	end
+	return true
+end
+
+
+function OOW:ModifyExperienceFilter( filterTable )
+	--[[for k, v in pairs( filterTable ) do
+		print("ModifyXP: " .. k .. " " .. tostring(v) )
+	end
+	]]
+	--local reason = filterTable["reason_const"]
+	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		return false
+	end
+	return true
+end
+
+
+function OOW:SetUpFountains()
+
+	LinkLuaModifier( "modifier_fountain_aura_lua", LUA_MODIFIER_MOTION_NONE )
+	LinkLuaModifier( "modifier_fountain_aura_effect_lua", LUA_MODIFIER_MOTION_NONE )
+
+	local fountainEntities = Entities:FindAllByClassname( "ent_dota_fountain")
+	for _,fountainEnt in pairs( fountainEntities ) do
+		--print("fountain unit " .. tostring( fountainEnt ) )
+		fountainEnt:AddNewModifier( fountainEnt, nil, "modifier_fountain_aura_lua", {} )
+
+	end
+end
+
 
 function OOW:EnableWaypoint( )
 	local entranceRadiant = Entities:FindByName( nil, "teleport_ent" )
@@ -307,8 +348,10 @@ end
 function OOW:EnableRunepoint()
 	for i=1,4 do
 		local cp = Entities:FindByName( nil, "dota_item_rune_spawner"..i )
+		if cp~=nil then
 	  		PingMiniMapAtLocation(cp:GetAbsOrigin() )
-	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 0,0, 255, 300, 100)		
+	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 0,0, 255, 300, 100)	
+	  	end	
 	end
 end
 
@@ -317,7 +360,9 @@ function OOW:EnableBlessingPoint(  )
 
 	-- 固定地点宝箱
 	for i=1,2 do
+
 		local cp = Entities:FindByName( nil, "cp_"..i )
+		if cp~=nil then
 	  		PingMiniMapAtLocation(cp:GetAbsOrigin() )
 	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 255, 255, 0, 300, 100)
 
@@ -338,6 +383,7 @@ function OOW:EnableBlessingPoint(  )
       -- return 60.0
     end
   )
+	end
 	end
 
 	-- 随机地点宝箱
@@ -540,6 +586,7 @@ function OOW:OnEntityKilled( keys )
 	local heroTeam = hero:GetTeam()
 	if killedUnit:IsRealHero() then
         self:RollDrops(killedUnit)
+        killedUnit:SetRespawnPosition(FindClearSpacePos(2000,100))
 	end
 	if killedUnit:IsCreature() then
         self:RollDrops(killedUnit)
@@ -560,24 +607,7 @@ function OOW:OnEntityKilled( keys )
 
     if killedUnit:IsRealHero() and  (heroTeam==DOTA_TEAM_GOODGUYS or heroTeam==DOTA_TEAM_BADGUYS) and heroTeam~=killedTeam then
     	ChangeOnePlayerToOtherTeam(hero)
-    	-- if killedTeam==GOODGUY_TEAM then
-    	-- 	PlayerResource:SetCustomTeamAssignment(killedUnit:GetPlayerID(),BADGUY_TEAM)
-    	-- 	killedUnit:SetTeam(BADGUY_TEAM) 
-    	-- elseif killedTeam==BADGUY_TEAM then
-    	-- 	PlayerResource:SetCustomTeamAssignment(killedUnit:GetPlayerID(),GOODGUY_TEAM)
-    	-- 	killedUnit:SetTeam(GOODGUY_TEAM) 
-    	-- end	
     end
-
- --    if killedUnit:IsRealHero() and  heroTeam ~= killedTeam then
-	-- 	local kill_alert =
-	-- 		{
-	-- 			hero_id = hero:GetClassname()
-	-- 		}
-	-- 	-- 发送事件到所有客户端UI
-	-- 	print("Killed " ..  hero:GetClassname())
-	-- 	CustomGameEventManager:Send_ServerToAllClients( "kill_alert", kill_alert )
-	-- end
 
 end
 
@@ -603,13 +633,13 @@ function OOW:OnLastHit( event )
 	PrintTable(event)
 end
 function OOW:OnAbilityUsed( event )
-	print("OnAbilityUsed")
+	-- print("OnAbilityUsed")
 	-- Notifications:TopToAll({hero="npc_dota_hero_axe", duration=5.0})
 	-- Notifications:TopToAll({hero="npc_dota_hero_axe", imagestyle="landscape", continue=true})
 	-- Notifications:TopToAll({hero="npc_dota_hero_axe", imagestyle="portrait", continue=true})
 	-- EmitGlobalSound( "announcer_ann_custom_adventure_alerts_41" )
 	-- GameRules:SetGameWinner( 2 )
-	PrintTable(event)
+	-- PrintTable(event)
 end
 function OOW:OnPlayerChangedName( event )
 	print("OnPlayerChangedName")
@@ -654,13 +684,10 @@ function OOW:DeleyThink()
 end
 
 function OOW:InitHeroAttribute( hero )
-
+	print ("InitHeroAttribute  player id ".. hero:GetPlayerID()  )
   	InitHeroInfo(hero)
 	-- print ("InitHeroAttribute" .. DeepPrintTable(hero:GetOwner())   )
-	print ("InitHeroAttribute  player id ".. hero:GetPlayerID()  )
-	-- local origin=RandomVector( RandomFloat( 0, 6000 ) )
-	-- print ("Respawn Hero on ".. tostring(origin) )
-	FindClearSpace(hero,2000,400)
+
 end
 
 
