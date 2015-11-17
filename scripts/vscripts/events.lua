@@ -1,6 +1,7 @@
 require("abilities")
 require("libraries/notifications")
 require("amhc_library/amhc")
+require("heroes")
 
 blesses = {
 	"blessing_of_heaven",
@@ -92,6 +93,58 @@ function OOW:OnItemPickUp( event )
 	end
 end
 
+function OOW:OnEntityKilled( keys )
+    local killedUnit = EntIndexToHScript( keys.entindex_killed )
+	local killedTeam = killedUnit:GetTeam()
+	local hero = EntIndexToHScript( keys.entindex_attacker )
+	local heroTeam = hero:GetTeam()
+	if killedUnit:IsRealHero() then
+        self:RollDrops(killedUnit)
+        killedUnit:SetRespawnPosition(FindClearSpacePos(2000,100))
+        for i=1, #blesses do 
+        	if killedUnit:HasModifier(blesses[i]) then
+	      		local item_name = "item_blessing_of_heaven"
+      			local item = CreateItem(item_name, nil, nil)
+      			item:SetPurchaseTime(0)
+      			local pos = killedUnit:GetAbsOrigin()
+      			local drop = CreateItemOnPositionSync( pos, item )
+      			StartSoundEvent( "RPG_Main.ItemLanded", item)
+      			local pos_launch = pos+RandomVector(RandomFloat(150,200))
+      			item:LaunchLoot(false, 200, 0.75, pos_launch)
+      		end
+        end
+
+	end
+	if killedUnit:IsCreature() then
+        self:RollDrops(killedUnit)
+        killedUnit.pet.alive = false
+        if heroTeam==DOTA_TEAM_GOODGUYS or heroTeam==DOTA_TEAM_BADGUYS then
+        	local m = CreateUnitByName("creep_vulture", RandomVector(5999) , true, nil, nil, RandomInt(6, 13))
+        	FindClearSpace(m,6000,200)
+        else
+        	local s =  CreateUnitByName("creep_vulture", RandomVector(5999) , true, nil, nil, killedTeam)
+        	FindClearSpace(s,6000,200)
+        end
+    end
+	if hero:IsCreature() or hero:IsRealHero() then
+		if hero.pet then
+			hero.pet:UpdateKills(killedUnit)
+		end
+	end
+
+    if killedUnit:IsRealHero() and  (heroTeam==DOTA_TEAM_GOODGUYS or heroTeam==DOTA_TEAM_BADGUYS) and heroTeam~=killedTeam then
+    	local modifier_name = "modifier_kill_rewards"
+    	local modifier = hero:FindModifierByName(modifier_name)
+    	if not modifier then
+     		MakeMod(hero,hero,modifier_name,nil)
+        	hero:SetModifierStackCount(modifier_name, hero, 1) 
+    	else
+        	hero:SetModifierStackCount(modifier_name, hero, count+1)
+    	end   		
+    	ChangeOnePlayerToOtherTeam(hero)
+    end
+
+end
 
 isFirst = true
 function OOW:OnNPCSpawned( event )

@@ -579,37 +579,6 @@ function OOW:ProcessItemForLootExpiration( item, flCutoffTime )
 
 end
 
-function OOW:OnEntityKilled( keys )
-    local killedUnit = EntIndexToHScript( keys.entindex_killed )
-	local killedTeam = killedUnit:GetTeam()
-	local hero = EntIndexToHScript( keys.entindex_attacker )
-	local heroTeam = hero:GetTeam()
-	if killedUnit:IsRealHero() then
-        self:RollDrops(killedUnit)
-        killedUnit:SetRespawnPosition(FindClearSpacePos(2000,100))
-	end
-	if killedUnit:IsCreature() then
-        self:RollDrops(killedUnit)
-        killedUnit.pet.alive = false
-        if heroTeam==DOTA_TEAM_GOODGUYS or heroTeam==DOTA_TEAM_BADGUYS then
-        	local m = CreateUnitByName("creep_vulture", RandomVector(5999) , true, nil, nil, RandomInt(6, 13))
-        	FindClearSpace(m,6000,200)
-        else
-        	local s =  CreateUnitByName("creep_vulture", RandomVector(5999) , true, nil, nil, killedTeam)
-        	FindClearSpace(s,6000,200)
-        end
-    end
-	if hero:IsCreature() or hero:IsRealHero() then
-		if hero.pet then
-			hero.pet:UpdateKills(killedUnit)
-		end
-	end
-
-    if killedUnit:IsRealHero() and  (heroTeam==DOTA_TEAM_GOODGUYS or heroTeam==DOTA_TEAM_BADGUYS) and heroTeam~=killedTeam then
-    	ChangeOnePlayerToOtherTeam(hero)
-    end
-
-end
 
 
 function OOW:OnConnectFull( event )

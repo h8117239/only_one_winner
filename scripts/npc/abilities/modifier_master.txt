@@ -86,6 +86,27 @@
 
 		}
 
+		"modifier_kill_rewards"
+		{
+
+			"TextureName" "ability_base"
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT" 
+			//"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"
+			//"EffectAttachType" "follow_origin"
+			"Properties"
+			{
+				//修改hp回复百分
+				//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "100"
+				//百分比攻击伤害
+				//"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"		"20"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"3"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"3"	
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"3"					
+
+			}		
+
+		}
+
 		"modifier_blessing_of_hell"
         {
         	"TextureName" "dazzle_shallow_grave"
