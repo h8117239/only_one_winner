@@ -23,17 +23,17 @@
 		"02"
 		{
 			"var_type" "FIELD_INTEGER"
-			"ag" 		"20"
+			"ag" 		"12"
 		}
 		"02"
 		{
 			"var_type" "FIELD_INTEGER"
-			"int" 		"20"
+			"int" 		"12"
 		}
 		"03"
 		{
 			"var_type" "FIELD_INTEGER"
-			"str" 		"20"
+			"str" 		"12"
 		}
         "04"
         {
@@ -45,6 +45,11 @@
             "var_type"          "FIELD_FLOAT"
             "stun_duration"        "1"
         }
+        "03"
+		{
+			"var_type" "FIELD_INTEGER"
+			"sattr" 		"3"
+		}
 
 	}
 	// Item Info
@@ -65,6 +70,8 @@
 
 	"Modifiers"
 	{
+
+
 		"blessing_of_heaven"
 		{
 
@@ -99,9 +106,9 @@
 				//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "100"
 				//百分比攻击伤害
 				//"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"		"20"
-				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"3"
-				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"3"	
-				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"3"					
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%sattr"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%sattr"	
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%sattr"					
 
 			}		
 

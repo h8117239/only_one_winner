@@ -9,7 +9,7 @@
 	"BaseClass"                     "item_recipe_arcane_boots"
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"2000"	
+	"ItemCost"						"3000"	
 	"ItemShopTags"					""
 	"ItemPurchasable"				"1"
 	"ItemSellable"					"1"		

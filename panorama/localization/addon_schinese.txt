@@ -1,6 +1,6 @@
 "addon"
 {
-	"addonname"	"胜者唯一"
+	"addonname"	"血战到底"
 
 	"custom_end_screen_victory_condition"	"赢家只有一个！"
 	"ConquestTeamPoints"							""

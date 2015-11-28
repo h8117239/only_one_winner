@@ -817,7 +817,7 @@
 	                     "Passive"					"1"
 	                     
 	                     "Aura"						"modifier_invis_revealed"
-	                     "Aura_Radius"				"350"
+	                     "Aura_Radius"				"550"
 	                     "Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_BOTH"
 	                     "Aura_Types"				"DOTA_UNIT_TARGET_ALL"
 	                     "Aura_Flags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -834,6 +834,38 @@
 	                "modifier_invis_revealed"
 	                {
 	                     "Passive"					"1"
+	                     "TextureName"				"item_gem"
+	                     "Priority"					"MODIFIER_PRIORITY_HIGH"
+	                     "States"
+	                     {
+	                           "MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_DISABLED"
+	                     }
+	                }
+	           }
+	    }
+	"dota_ability_reveal_invis_large"
+	    {
+	           "BaseClass"							"ability_datadriven"
+	           "AbilityName"						"dota_ability_reveal_invis_large"
+	           //"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+	           "Modifiers"
+	           {
+	                "modifier_dota_ability_reveal_invis_large"
+	                {
+	                     "IsHidden"					"1"
+	                     //"Passive"					"1"
+	                     
+	                     "Aura"						"modifier_invis_revealed_large"
+	                     "Aura_Radius"				"750"
+	                     "Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_BOTH"
+	                     "Aura_Types"				"DOTA_UNIT_TARGET_ALL"
+	                     "Aura_Flags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	                }
+	
+	                "modifier_invis_revealed_large"
+	                {
+	                     //"Passive"					"1"
 	                     "TextureName"				"item_gem"
 	                     "Priority"					"MODIFIER_PRIORITY_HIGH"
 	                     "States"
@@ -1947,17 +1979,17 @@
 			"02"
 			{
 				"var_type" "FIELD_INTEGER"
-				"ag" 		"20"
+				"ag" 		"12"
 			}
 			"02"
 			{
 				"var_type" "FIELD_INTEGER"
-				"int" 		"20"
+				"int" 		"12"
 			}
 			"03"
 			{
 				"var_type" "FIELD_INTEGER"
-				"str" 		"20"
+				"str" 		"12"
 			}
 	        "04"
 	        {
@@ -1969,6 +2001,11 @@
 	            "var_type"          "FIELD_FLOAT"
 	            "stun_duration"        "1"
 	        }
+	        "03"
+			{
+				"var_type" "FIELD_INTEGER"
+				"sattr" 		"3"
+			}
 	
 		}
 		// Item Info
@@ -1989,6 +2026,8 @@
 	
 		"Modifiers"
 		{
+	
+	
 			"blessing_of_heaven"
 			{
 	
@@ -2023,9 +2062,9 @@
 					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "100"
 					//百分比攻击伤害
 					//"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"		"20"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"3"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"3"	
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"3"					
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%sattr"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%sattr"	
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%sattr"					
 	
 				}		
 	

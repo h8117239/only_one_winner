@@ -142,6 +142,9 @@ boss_wave = {
 }
 
 
+boss_wave_not_move = {
+			{class="npc_dota_creep_dire_golem",waiting=77,count=s_count,interval=300,nums=1,isQuest=false},
+}
 
 boss_wave_pvp1 = {
 			{class="boss_spider",waiting=300,count=s_count,interval=360,nums=s_numbers,isQuest=true},
@@ -183,6 +186,9 @@ wave_pvp={
 -- 产怪点
 spawner_table = 
 {
+	{
+	name="sp_boss1",waves=boss_wave_not_move,max=2,team=DOTA_TEAM_NEUTRALS
+	},
 	{
 	name="sp_good1",waves=wave_pvp,waypoint="good_top_way-1",team=DOTA_TEAM_GOODGUYS
 	},

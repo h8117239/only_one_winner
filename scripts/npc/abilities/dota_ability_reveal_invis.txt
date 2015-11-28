@@ -12,7 +12,7 @@
                      "Passive"					"1"
                      
                      "Aura"						"modifier_invis_revealed"
-                     "Aura_Radius"				"350"
+                     "Aura_Radius"				"550"
                      "Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_BOTH"
                      "Aura_Types"				"DOTA_UNIT_TARGET_ALL"
                      "Aura_Flags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"

@@ -67,6 +67,9 @@ function Precache( context )
 	PrecacheItemByNameSync( "item_halloween_candy", context )
 	PrecacheModel( "item_halloween_candy", context )
 
+	PrecacheItemByNameSync( "item_roshan_call", context )
+	PrecacheModel( "item_roshan_call", context )
+
 
 	-- PrecacheUnitByNameAsync( "npc_dota_creature_basic_zombie", function(unit) end )
  --    PrecacheModel( "npc_dota_creature_basic_zombie", context )
@@ -102,10 +105,13 @@ function Precache( context )
  --    PrecacheModel( "boss_green_dragon", context )
  --    PrecacheUnitByNameAsync( "dotb_buiding_defender_fort", function(unit) end )
  --    PrecacheModel( "dotb_buiding_defender_fort", context )
+
     PrecacheUnitByNameAsync( "npc_dota_dummy_caster", function(unit) end )
     PrecacheModel( "npc_dota_dummy_caster", context )
     PrecacheUnitByNameAsync( "npc_dota_dummy_caster_bad", function(unit) end )
     PrecacheModel( "npc_dota_dummy_caster_bad", context )
+    PrecacheUnitByNameAsync( "npc_dota_creep_dire_golem", function(unit) end )
+    PrecacheModel( "npc_dota_creep_dire_golem", context )
 
 	-- PrecacheResource( "model", "models/projectiles/mirana_arrow.vmdl", context )
 	-- PrecacheResource( "model", "*.vmdl", context )
@@ -119,19 +125,19 @@ function Precache( context )
 	-- PrecacheResource( "particle_folder", "particles/units/heroes/hero_broodmother", context )
 	-- PrecacheResource( "soundfile", "soundevents/game_sounds_broodmother.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_luna", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_luna.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_spirit_breaker", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_spirit_breaker.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts", context )
 	-- PrecacheResource( "particle_folder", "particles/units/heroes/hero_death_prophet_ghost", context )
 	-- PrecacheResource( "soundfile", "soundevents/game_sounds_death_prophet.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_sandking", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_sandking.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_crystalmaiden", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_crystalmaiden.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_invoker", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_invoker.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_warlock", context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_warlock.vsndevts", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_skeletonking", context )
 	
 	-- PrecacheResource("particle_folder","particles/units/heroes/hero_vengeful/vengeful_magic_missle",context)
@@ -151,6 +157,7 @@ function Precache( context )
 	PrecacheResource( "particle_folder", "particles/econ/items/luna/luna_lucent_ti5", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_omniknight", context )
 	PrecacheResource( "particle_folder", "particles/econ/events/fall_major_2015", context )
+	PrecacheResource( "particle_folder", "particles/customgames/capturepoints", context )
 
 	print("precache end")
 end
@@ -219,6 +226,8 @@ function OOW:InitGameMode()
 	-- GameRules:SetCreepMinimapIconScale( 0.7 )
 	-- GameRules:SetRuneMinimapIconScale( 0.7 )i
 	-- GameRules:GetGameModeEntity():SetFogOfWarDisabled( true )
+	-- GameRules:GetGameModeEntity():SetAnnouncerDisabled( true )
+	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled( false )
 	GameRules:SetGoldTickTime( 3 )
 	GameRules:SetGoldPerTick( 5 )
 	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
@@ -253,7 +262,7 @@ function OOW:InitGameMode()
   -- ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(OOW, 'OnPlayerLearnedAbility'), self)
   ListenToGameEvent('entity_killed', Dynamic_Wrap(OOW, 'OnEntityKilled'), self)
   -- ListenToGameEvent('player_connect_full', Dynamic_Wrap(OOW, 'OnConnectFull'), self)
-  -- ListenToGameEvent('player_disconnect', Dynamic_Wrap(OOW, 'OnDisconnect'), self)
+  ListenToGameEvent('player_disconnect', Dynamic_Wrap(OOW, 'OnDisconnect'), self)
   -- ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(OOW, 'OnItemPurchased'), self)
   ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(OOW, 'OnItemPickUp'), self)
   -- ListenToGameEvent('last_hit', Dynamic_Wrap(OOW, 'OnLastHit'), self)
@@ -263,7 +272,7 @@ function OOW:InitGameMode()
   -- ListenToGameEvent('dota_player_take_tower_damage', Dynamic_Wrap(OOW, 'OnPlayerTakeTowerDamage'), self)
   -- ListenToGameEvent('tree_cut', Dynamic_Wrap(OOW, 'OnTreeCut'), self)
   -- ListenToGameEvent('entity_hurt', Dynamic_Wrap(OOW, 'OnEntityHurt'), self)
-  -- ListenToGameEvent('player_connect', Dynamic_Wrap(OOW, 'PlayerConnect'), self)
+  ListenToGameEvent('player_connect', Dynamic_Wrap(OOW, 'PlayerConnect'), self)
   -- ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(OOW, 'OnAbilityUsed'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(OOW, 'OnGameRulesStateChange'), self)
   ListenToGameEvent('npc_spawned', Dynamic_Wrap(OOW, 'OnNPCSpawned'), self)
@@ -345,6 +354,16 @@ function OOW:EnableWaypoint( )
 	end
 end
 
+function OOW:EnableBosspoint()
+	for i=1,4 do
+		local cp = Entities:FindByName( nil, "sp_boss"..i )
+		if cp~=nil then
+	  		PingMiniMapAtLocation(cp:GetAbsOrigin() )
+	  		GameRules:AddMinimapDebugPoint( -cp:entindex(), cp:GetAbsOrigin(), 255,0, 255, 300, 100)	
+	  	end	
+	end
+end
+
 function OOW:EnableRunepoint()
 	for i=1,4 do
 		local cp = Entities:FindByName( nil, "dota_item_rune_spawner"..i )
@@ -379,8 +398,8 @@ function OOW:EnableBlessingPoint(  )
       StartSoundEvent( "RPG_Main.ItemLanded", item)
       PingMiniMapAtLocation(pos)
       item:LaunchLoot(false, 200, 0.75, pos)
-      return 10.0
-      -- return 60.0
+      -- return 10.0
+      return 60.0
     end
   )
 	end
@@ -401,8 +420,8 @@ function OOW:EnableBlessingPoint(  )
       StartSoundEvent( "RPG_Main.ItemLanded", item)
       -- PingMiniMapAtLocation(pos)
       item:LaunchLoot(false, 200, 0.75, pos)
-      return 20.0
-      -- return RandomInt(30, 60) 
+      -- return 20.0
+      return RandomInt(30, 60) 
     end
   )
 
@@ -583,10 +602,6 @@ end
 
 function OOW:OnConnectFull( event )
 	print("OnConnectFull")
-	PrintTable(event)
-end
-function OOW:OnDisconnect( event )
-	print("OnDisconnect")
 	PrintTable(event)
 end
 function OOW:OnItemPurchased( event )
@@ -810,13 +825,15 @@ function OOW:GameThink()
 		self:EnableBlessingPoint()
 		self:EnableWaypoint()
 		self:EnableRunepoint()
+		self:EnableBosspoint()
 		self.isLoad = true
 		-- self:CreateWeatherCaster()
 		-- EmitGlobalSound("Bgm.Bgm")
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 10 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 10 )
-
-	end
+		self.flPreGameTime = GameRules:GetGameTime()
+		self:StartDisconnectDetection()
+		end
 
 
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then

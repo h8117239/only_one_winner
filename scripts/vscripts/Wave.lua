@@ -99,9 +99,11 @@ function  Wave:OnThink(  )
 						entUnit = CreateUnitByName(self.creatureClass, spawnPos, true, nil, nil, team)
 					end
 					if entUnit then
+						EmitAnnouncerSound("announcer_ann_custom_adventure_alerts_48")
+						PingMiniMapAtLocation(entUnit:GetAbsOrigin() )
 						-- local origin=RandomVector( RandomFloat( 0, 7000 ) )
 						-- print ("Spawn Ent on ".. tostring(origin) )
-						FindClearSpace(entUnit,6000,300)
+						-- FindClearSpace(entUnit,6000,300)
 						-- entUnit:SetAbsOrigin(origin)
 						-- FindClearSpaceForUnit(entUnit, origin, true)
 
